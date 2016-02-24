@@ -1,0 +1,14 @@
+{
+  "name": "angular-realtime",
+  "main": "angular-realtime.js",
+  "homepage": "https://github.com/diego-vieira/angular-realtime",
+  "authors": [
+    "Diego Vieira <diego@protos.inf.br>"
+  ],
+  "description": "angular wrapper for realtime.co messaging",
+  "moduleType": [],
+  "keywords": [
+    "angular-realtime"
+  ],
+  "license": "MIT"
+}
