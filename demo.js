@@ -1,5 +1,5 @@
 angular.module('app', ['realtime'])
-.controller('appCtrl', function($rootScope, $scope, $interval, $realtime) {
+.controller('appCtrl', function($scope, $realtime) {
     $realtime.setCredentials('JVE6un', 'my-auth-token-if-using-presence');
 
     $scope.connect = function() {
@@ -64,7 +64,7 @@ angular.module('app', ['realtime'])
 
     // Channel Events
     _.each($scope.channels, function(channel) {
-        $rootScope.$on('realtime:'+channel.id+':onSubscribed', function(event, ortc) {
+        $scope.$on('realtime:'+channel.id+':onSubscribed', function(event, ortc) {
             $scope.$apply(function() {
                 _.find($scope.channels, { id: channel.id }).isSubscribed = true;
             });
