@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <title>angular-realtime</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.0.15/css/bulma.min.css">
+    <script data-require="angular.js@1.5.0" data-semver="1.5.0" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+    <script data-require="lodash.js@3.6.0" data-semver="3.6.0" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.6.0/lodash.js"></script>
+    <script type="text/javascript" src="http://messaging-public.realtime.co/js/2.1.0/ortc.js"></script>
+    <script src="angular-realtime.js"></script>
+    <script src="demo.js"></script>
+</head>
+<body ng-controller="appCtrl">
+    <div class="container">
+        <h1 class="title">Set your name below and open this demo in another tab or browser.</h1>
+
+        <input class="input" ng-model="name" placeholder="your name"><br />
+
+        <button class="button is-success" ng-click="connect()" ng-disabled="isConnected">Connect</button> <button class="button is-danger" ng-click="disconnect()" ng-disabled="!isConnected">Disconnect</button><br /><br />
+
+        <div ng-repeat="c in channels">
+                <h3 class="subtitle is-3">{{c.id}}</h3> <button class="button is-small is-success" ng-click="subscribe(c.id)" ng-disabled="c.isSubscribed || !isConnected">Subscribe</button> <button class="button is-small is-danger" ng-click="unsubscribe(c.id)" ng-disabled="!c.isSubscribed || !isConnected">Unsubscribe</button><br /><br />
+
+                <input class="input" ng-model="message" ng-disabled="!c.isSubscribed || !isConnected"><br />
+                <button class="button is-success" ng-click="send(c.id, message)" ng-disabled="!c.isSubscribed || !isConnected">Send</button><br /><br />
+
+                <ul>
+                    <li ng-repeat="m in c.messages track by $index">{{m}}</li>
+                </ul>
+            <br />
+        </div>
+    </div>
+</body>
+</html>
