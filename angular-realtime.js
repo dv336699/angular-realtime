@@ -5,13 +5,13 @@
     .provider('$realtime', function() {
         var applicationKey = null;
         var authenticationToken = null;
-        var realtimeClusterUrl = 'http://ortc-developers.realtime.co/server/2.1/';
+        var realtimeClusterUrl = 'https://ortc-developers.realtime.co/server/ssl/2.1';
 
         var realtimeClient = null;
 
         function Realtime($rootScope) {
             this.setClusterUrl = function(clusterUrl) {
-                realtimeClusterUrl = clusterUrl;
+                realtimeClient.setClusterUrl(clusterUrl);
             };
 
             this.setCredentials = function(key, token, connect) {
